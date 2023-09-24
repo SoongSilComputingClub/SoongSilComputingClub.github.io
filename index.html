@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSCC 마음의 편지</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: 
+            radial-gradient(rgb(238, 99, 99) 7%, transparent 7%),
+            radial-gradient(rgb(238, 99, 99) 7%, transparent 7%);
+            background-position: 0px 0px, 84px 84px;
+            background-size: 168px 168px;
+            background-color: rgb(255, 255, 255);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    }
+
+        .context {
+            margin-top: 5vh;
+            width: 85%;
+            height: 1500px;
+            background-color: #ededed;
+            border-radius: 15px;
+        }
+
+        #title {
+            font-size: 50px;
+            margin-left: 30px;
+            margin-top: 35px;
+            width: 90%;
+            background-color: #ededed;
+            border: none;
+        }
+        #title:focus {
+            outline: none;
+        }
+
+        #main-text {
+            font-size: 30px;
+            margin-left: 30px;
+            margin-top: 35px;
+            width: 90%;
+            background-color: #ededed;
+            border: none;
+        }
+        #main-text:focus {
+            outline: none;
+        }
+
+        #postButton {
+            width: 100%;
+            height: 72px;
+            font-size: 30px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgb(238, 99, 99);
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="context">
+        <input type="text" name="title" id="title" placeholder="제목" />
+        <textarea cols="40" rows="15" name="main-text" id="main-text" placeholder="본문"></textarea>
+        <button type="submit" id="postButton">익명 보장 전송</button>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#postButton").click(function() {
+            var title = $("#title").val() || "제목이 없는 편지입니다";
+            var main_text = $("#main-text").val();
+            
+            if (main_text === "") {
+                alert("내용을 입력하세요.");
+                return;
+            }
+            
+            var jsonData = {
+                content: "누군가의 게시글이 도착했습니다",
+                embeds: [{
+                    title: title,
+                    description: main_text
+            }]
+        };
+
+        var jsonString = JSON.stringify(jsonData);
+        
+        var token01 = "https://disco"
+        var token02 = "rd.com/api/webhook"
+        var token03 = "s/11554874954468"
+        var token04 = "55761/Okdvaern1y3qNLPW1"
+        var token05 = "skZhrT5waWXJaIMEF4OAWlI_CqAhuqUjzgWRoYx92gY1-UMPaE"
+
+        $.ajax({
+            type: "POST",
+                url: token01 + token02 + token03 + token04 + "X" + token05,
+                data: jsonString,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    console.log("POST 성공");
+                },
+                error: function(error) {
+                    console.error("POST 실패: " + JSON.stringify(error));
+                }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
