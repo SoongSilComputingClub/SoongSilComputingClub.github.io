@@ -108,6 +108,8 @@
                 dataType: "json",
                 success: function(response) {
                     console.log("POST 성공");
+                    alert("성공적으로 전송하였습니다");
+                    location.reload();
                 },
                 error: function(error) {
                     console.error("POST 실패: " + JSON.stringify(error));
