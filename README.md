@@ -1,1 +1,0 @@
-# SoongSilComputingClub.github.io
